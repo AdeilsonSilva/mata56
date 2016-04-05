@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<title>js-lessons</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+<!-- Theses are just icons config - created with realfavicongenerator.net -->
+<link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="assets/images/icons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/images/icons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="assets/images/icons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/images/icons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="assets/images/icons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/images/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="assets/images/icons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="assets/images/icons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="assets/images/icons/manifest.json">
+<link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="assets/images/icons/favicon.ico">
+<meta name="msapplication-TileColor" content="#ffc40d">
+<meta name="msapplication-TileImage" content="assets/images/icons/mstile-144x144.png">
+<meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- You can remove or leave at is -->
+<!-- Stylesheets system - please don't remove :) -->
+<link rel="stylesheet" href="assets/main.css">
+<link rel="stylesheet" href="assets/codemirror/codemirror.css">
+<link rel="stylesheet" href="assets/codemirror/addons/show-hint.css">
+<link rel="stylesheet" href="assets/codemirror/addons/lint.css">
+<link rel="stylesheet" href="assets/codemirror/addons/fullscreen.css">
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.19.1/ramda.min.js"></script> -->
+<script type="text/javascript">
+// Adds the implementation for Array.prototype.concatAll()
+function defineConcatAll() {
+	Array.prototype.concatAll = function () {
+		var results = [];
+
+		this.forEach(function(subArray) {
+			results.push.apply(results, subArray);
+		});
+
+		return results;
+	};
+}
+
+/**
+ * Add the implementation for Array.prototype.concatMap()
+ */
+function defineConcatMap() {
+	Array.prototype.concatMap = function(fnc) {
+		return this.
+			map(function (e) {
+				return fnc(e);
+			}).
+			// apply the concatAll function to flatten the two-dimensional array
+			concatAll();
+	};
+}
+
+/**
+ * This function will be executed at the begining of each verifier function
+ */
+function preVerifierHook() {
+	// Add helpers to prevent 'undefined is not a function' like errors
+	defineConcatAll();
+	defineConcatMap();
+}
+
+function showLessonErrorMessage(exp, got, note, div){
+	var preTag;
+	var expected = JSON.stringify(JSON.parse(exp), undefined, 4);
+
+	div.innerHTML = "<h4>Expected:</h4>";
+	preTag = document.createElement("pre");
+	preTag.innerHTML += expected;
+	div.appendChild(preTag);
+	div.innerHTML += "<h4>Got:</h4>";
+	preTag = document.createElement("pre");
+	preTag.innerHTML += got;
+	div.appendChild(preTag);
+	
+	div.innerHTML += (note !== "") ? ("<h4>Note</h4><p style=\"margin-left: 25px;\">" + note + "</p>") : ""; 
+	div.className = "info";
+}
+</script>
+<script type="text/javascript" src="assets/javathcript/Javathcript.js"></script>
+<script type="text/lisp" src="assets/javathcript/prelude.lsp"></script>
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+function isObject(obj) {
+  return obj === Object(obj);
+}
+function printObj(value) {
+	if (isObject(value)) {
+		value = value.toString();
+	}
+	console.log(value);
+}
+$(document).ready(function() {
+	$("code").click(function(e) {
+		var value = Javathcript.eval($(this).text());
+		printObj(value);
+	});
+});
+
+function simplesEval(str, info) {
+var val = Javathcript.eval(str);
+printObj(val);
+return "Success!";
+}
+function multiEval(str, info) {
+Javathcript.evalMulti(str);
+return "Success!";
+}
+</script>
+
+<!-- <xmp theme="united" style="display:none;"> -->
+<div id="loader-wrapper">
+<div id="loader"></div>
+<div class="loader-section section-left"></div>
+<div class="loader-section section-right"></div>
+</div>
+
+{{ content }}
+
+<div id="START-EXERCISE"></div>
+<div id="END-EXERCISE"></div>
+
+<!-- </xmp> -->
+
+<!-- Nice librarie for functional programming -->
+<script type="text/javascript" src="assets/underscore/underscore-min.js"></script>
+
+<!-- Since strapdown is stupid and can change the value of textarea, we need to make a backup of all code -->
+<!-- 
+<script type="text/javascript">
+	replaceAll = function(search, replacement, object) {
+	    return object.replace(new RegExp(search, 'g'), replacement);
+	};
+</script>
+
+ --><!-- Libraries for interface -->
+<script src="assets/codemirror/codemirror.js"></script>
+<script src="assets/codemirror/commonlisp.js"></script>
+<!-- Some code mirrors addons -->
+<script src="assets/codemirror/javascript.js"></script>
+<script src="assets/codemirror/addons/matchbrackets.js"></script>
+<script src="assets/codemirror/addons/autorefresh.js"></script>
+<script src="assets/codemirror/addons/javascript-hint.js"></script>
+<script src="assets/codemirror/addons/jshint.js"></script>
+<script src="assets/codemirror/addons/javascript-lint.js"></script>
+<script src="assets/codemirror/addons/lint.js"></script>
+<script src="assets/codemirror/addons/show-hint.js"></script>
+<script src="assets/codemirror/addons/fullscreen.js"></script>
+<script src="assets/codemirror/addons/active-line.js"></script>
+
+<!-- APP LIBRARIES --> 
+<script src="assets/app/wordlist.js"></script>
+
+<script type="text/javascript">
+	// Hide the remain exercises without remove markdown support
+	// Remember to use functional paradigm :p
+	(function (){
+		var x = document.getElementById("START-EXERCISE");
+		while(x.nextElementSibling.id != "END-EXERCISE"){
+			x.style.display = "none";
+			x = x.nextElementSibling;
+		}
+
+		// Since text area only have javascript code, is not necessary left "<a href="">"
+		// , or "<em>" 
+		x = document.getElementsByClassName("code");
+		_.each(x, el => {
+			el.value = el.value.replace(/(<a\ href=").*(">)/g, 		"");
+			el.value = el.value.replace(new RegExp("</a>", 'g'), 	"");
+			el.value = el.value.replace(new RegExp("<em>", 'g'), 	"*");
+			el.value = el.value.replace(new RegExp("</em>", 'g'), 	"*");
+		});
+	})();
+	
+	var codeMirrorEditors = [];
+	var lessons = document.getElementsByClassName("lesson");
+
+	function scrollTo(element, to, duration) {
+	    var difference 	= (to + 60) - element.scrollTop;
+	    var perTickSize = (difference / duration).toFixed();
+	    var perTickTime = (duration / difference).toFixed(2);
+	    var pageHeight	= window.innerHeight;
+
+	    var scrollingId = setInterval( _ => {
+	    	if((duration <= 0) || ((pageHeight + element.scrollTop) > element.offsetHeight)){
+	    		clearInterval(scrollingId);
+	    		return;
+	    	}
+	    	duration -= perTickTime;
+	    	element.scrollTop = element.scrollTop + perTickSize;
+	    }, perTickTime);		
+	}
+
+	_.each(lessons, function (el){
+		var code = el.children[0];
+		var output = el.children[1];
+		var info = el.children[2]; 
+		var verifierScript = el.children[3].textContent;
+		var go = el.children[4];
+
+		code.style.visibility = null;
+		code.style.display = null;
+
+		CodeMirror.defaults.lint = true;
+
+		var codeMirror = CodeMirror.fromTextArea(code, {
+			    lineNumbers: true,
+			    mode: "commonlisp",
+			    gutters: ["CodeMirror-lint-markers"],
+			    lint: true,
+				matchBrackets: true,
+				autoRefresh: true,
+				tabSize: 4,
+				indentWithTabs: false,
+				hint: true,
+				extraKeys: {
+					"F4": function(cm) {
+						cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+					},
+					"Esc": function(cm) {
+						if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+					},
+					"Ctrl-Space": "autocomplete"
+				}
+			});
+		codeMirror.setSize("100%", "auto");
+
+		codeMirrorEditors.push(codeMirror);
+
+		configureReadOnlyLines(codeMirror);
+
+		go.onclick = (ev) =>  {
+			try{
+				var verificador = eval("(" + verifierScript + ")");
+				output.textContent = verificador(codeMirror.getValue(), info, el);
+			} catch (ex) {
+				alert(ex);
+			}
+
+			if((output.textContent !== "Success!") && (output.textContent !== "YUPPPEEEE!")){
+				output.className = "error";
+				output.textContent = "Error!";
+				return;
+			}
+
+			output.className = "success";
+			info.className = "output";
+		};
+	});
+
+	var input = document.getElementById("select");
+	function selectTheme() {
+		var theme = input.options[input.selectedIndex].textContent;
+		_.each(codeMirrorEditors, el => {
+			el.setOption("theme", theme)
+		});
+		location.hash = "#" + theme;
+	}
+	var choice = (location.hash && location.hash.slice(1)) ||
+	             (document.location.search &&
+	             decodeURIComponent(document.location.search.slice(1)));
+	if (choice) {
+		input.value = choice;
+		_.each(codeMirrorEditors, el => {
+			el.setOption("theme", choice)
+		});
+	}
+	CodeMirror.on(window, "hashchange", function() {
+		var theme = location.hash.slice(1);
+		if (theme) {
+			input.value = theme;
+			selectTheme();
+		}
+	});
+
+	// After all page got rendered remove loader
+	document.body.classList.add("loaded");
+
+	/**
+	 * This function assumes that lines containing three consecutive
+	 * slahes (---) are markers to delimit read-only text.
+	 * If a marker exists, then all lines not between consecutive markers
+	 * become read-only.
+	 * Example:
+	 * <textarea>
+	 *   This line is read-only
+	 *   ---
+	 *   This line is read-write
+	 *   ---
+	 *   This line is also read-only
+	 * </textarea>
+	 */
+	function configureReadOnlyLines(codeMirrorEditor) {
+		var i,
+			doc = codeMirrorEditor.doc,
+			lines = doc.children[0].lines.map(line => line.text);
+			separatorIndices = _.range(lines.length).filter(idx => lines[idx].indexOf("---") != -1);
+
+		if (separatorIndices.length > 0) {
+			separatorIndices = [0].concat(separatorIndices, lines.length - 1);
+			for (i = 0; i < separatorIndices.length - 1; i += 2) {
+				doc.markText({line: separatorIndices[i], ch: 0},
+					{line: separatorIndices[i + 1] + 1, ch: 0},
+					{readOnly: true, css: "opacity: 0.6"});
+			}
+		}
+	}
+</script>
+
+</html>
