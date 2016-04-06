@@ -4,17 +4,20 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <h1 class="page-heading">Aulas</h1>
 
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% assign sorted = (site.pages | sort: 'date') | reverse %}
+    {% for page in sorted %}
+    {% if page.categories contains 'aula' %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <span class="post-meta">{{ page.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+          <a class="post-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
         </h2>
       </li>
+    {% endif %}
     {% endfor %}
   </ul>
 

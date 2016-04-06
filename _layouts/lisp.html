@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>js-lessons</title>
+<title>{{ page.title }}</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
 <!-- Theses are just icons config - created with realfavicongenerator.net -->
@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="assets/codemirror/addons/show-hint.css">
 <link rel="stylesheet" href="assets/codemirror/addons/lint.css">
 <link rel="stylesheet" href="assets/codemirror/addons/fullscreen.css">
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.19.1/ramda.min.js"></script> -->
+
 <script type="text/javascript">
 // Adds the implementation for Array.prototype.concatAll()
 function defineConcatAll() {
@@ -87,9 +87,14 @@ function showLessonErrorMessage(exp, got, note, div){
 	div.className = "info";
 }
 </script>
+<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+<!-- Lisp -->
 <script type="text/javascript" src="assets/javathcript/Javathcript.js"></script>
 <script type="text/lisp" src="assets/javathcript/prelude.lsp"></script>
-<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+<!-- Javascript Functional Programming -->
+<script type="text/javascript" src="assets/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="assets/ramda/ramda.min.js"></script>
+
 <script type="text/javascript">
 function isObject(obj) {
   return obj === Object(obj);
@@ -108,17 +113,25 @@ $(document).ready(function() {
 });
 
 function simplesEval(str, info) {
-var val = Javathcript.eval(str);
-printObj(val);
-return "Success!";
+	var cmd = "(function(){" + str + "})();";
+	eval(cmd);
+	return "Success!";
 }
-function multiEval(str, info) {
-Javathcript.evalMulti(str);
-return "Success!";
+function simplesEvalLisp(str, info) {
+	var val = Javathcript.eval(str);
+	printObj(val);
+	return "Success!";
+}
+function multiEvalLisp(str, info) {
+	Javathcript.evalMulti(str);
+	return "Success!";
 }
 </script>
 
 <!-- <xmp theme="united" style="display:none;"> -->
+<div class="page-content">
+<div class="post-content">
+
 <div id="loader-wrapper">
 <div id="loader"></div>
 <div class="loader-section section-left"></div>
@@ -130,10 +143,9 @@ return "Success!";
 <div id="START-EXERCISE"></div>
 <div id="END-EXERCISE"></div>
 
+</div>
+</div>
 <!-- </xmp> -->
-
-<!-- Nice librarie for functional programming -->
-<script type="text/javascript" src="assets/underscore/underscore-min.js"></script>
 
 <!-- Since strapdown is stupid and can change the value of textarea, we need to make a backup of all code -->
 <!-- 
@@ -215,7 +227,7 @@ return "Success!";
 
 		var codeMirror = CodeMirror.fromTextArea(code, {
 			    lineNumbers: true,
-			    mode: "commonlisp",
+			    mode: (window.codeMirrorLanguage || "javascript"),
 			    gutters: ["CodeMirror-lint-markers"],
 			    lint: true,
 				matchBrackets: true,
