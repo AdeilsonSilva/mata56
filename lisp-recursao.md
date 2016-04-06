@@ -52,6 +52,15 @@ Implemente a função `(soma-lista lista)`, que retorna a soma dos elementos da 
 
 <div class="lesson">
 <textarea class="code">
+(defun soma-lista-acum (lista acum)
+  (cond
+    ((null lista) acum)
+    (t (soma-lista-acum (cdr lista) (+ acum (car lista))))))
+
+(defun soma-lista (lista)
+  (soma-lista-acum lista 0))
+
+(print (soma-lista '(1 8 5)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -65,19 +74,15 @@ Implemente a função `(fatorial n)`, que retorna o valor de n! (n fatorial).
 
 <div class="lesson">
 <textarea class="code">
-</textarea>
-<div class="output"></div>
-<div class="output"></div>
-<pre class="verifier">function(str, info) { return multiEval(str, info); }</pre>
-<button class="go">Rodar</button>
-</div>
+(defun fatorial-acum (n acum)
+  (cond
+    ((= n 1) acum)
+    (t (fatorial-acum (- n 1) (* acum n)))))
 
-### fatorial
+(defun fatorial (n)
+  (fatorial-acum n 1))
 
-Implemente a função `(fatorial n)`, que retorna o valor de n! (n fatorial).
-
-<div class="lesson">
-<textarea class="code">
+(print (fatorial 3))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -91,6 +96,15 @@ Implemente a função `(fibonacci n)`, que retorna o n-ésimo número da sequên
 
 <div class="lesson">
 <textarea class="code">
+(defun fib-acum (n a1 a2)
+  (cond
+    ((<= n 2) a1)
+    (t (fib-acum (- n 1) (+ a1 a2) a1))))
+
+(defun fib (n)
+  (fib-acum n 1 1))
+
+(print (fib 0))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -104,6 +118,15 @@ Implemente a função `(inverte lista)`, que retorna uma lista com os mesmos ele
 
 <div class="lesson">
 <textarea class="code">
+(defun inverte-acum (l il)
+  (cond
+    ((null l) il)
+    (t (inverte-acum (cdr l) (cons (car l) il)))))
+
+(defun inverte (l)
+  (inverte-acum l '()))
+
+(print (inverte '(5 2 1)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -117,6 +140,23 @@ Implemente a função `(concatena l1 l2)`, que recebe duas listas, l1 e l2, e re
 
 <div class="lesson">
 <textarea class="code">
+(defun inverte-acum (l il)
+  (cond
+    ((null l) il)
+    (t (inverte-acum (cdr l) (cons (car l) il)))))
+
+(defun inverte (l)
+  (inverte-acum l '()))
+
+(defun concatena-acum (l1 l2)
+  (cond
+    ((null l1) l2)
+    (t (concatena-acum (cdr l1) (cons (car l1) l2)))))
+
+(defun concatena (l1 l2)
+  (concatena-acum (inverte l1) l2))
+
+(print (concatena '(1 2 3) '(4 5 6)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
