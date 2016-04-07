@@ -72,19 +72,6 @@ Implemente a função `(fatorial n)`, que retorna o valor de n! (n fatorial).
 <button class="go">Rodar</button>
 </div>
 
-### fatorial
-
-Implemente a função `(fatorial n)`, que retorna o valor de n! (n fatorial).
-
-<div class="lesson">
-<textarea class="code">
-</textarea>
-<div class="output"></div>
-<div class="output"></div>
-<pre class="verifier">function(str, info) { return multiEval(str, info); }</pre>
-<button class="go">Rodar</button>
-</div>
-
 ### fibonacci
 
 Implemente a função `(fibonacci n)`, que retorna o n-ésimo número da sequência de Fibonacci.
