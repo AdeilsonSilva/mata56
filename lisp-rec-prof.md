@@ -49,6 +49,32 @@ Implemente a função `(membro-prof x expr)`, que indica se `x` aparece na expre
 
 <div class="lesson">
 <textarea class="code">
+(defun membro-prof (x lista)
+  (cond
+    ((null lista) Nil)
+    ((consp (car lista))
+      (or (membro-prof x (car lista))
+          (membro-prof x (cdr lista))))
+    (t
+      (or (equal (car lista) x)
+          (membro-prof x (cdr lista))))))
+
+(print (membro-prof 5 '(1 2 3)))
+(print (membro-prof 5 '(1 2 3 (4 5))))
+(print (membro-prof 5 '(1 2 (3 (5 4)))))
+(print (membro-prof '() '(1 2 3)))
+(print (membro-prof '() '(1 () 2 3)))
+(print (membro-prof '() '(())))
+</textarea>
+<div class="output"></div>
+<div class="output"></div>
+<pre class="verifier">function(str, info) { return multiEval(str, info); }</pre>
+<button class="go">Rodar</button>
+</div>
+
+<!--
+<div class="lesson">
+<textarea class="code">
 (defun membro-prof (x expr)
   (cond
     ((not (consp expr)) (equal x expr))
@@ -60,12 +86,12 @@ Implemente a função `(membro-prof x expr)`, que indica se `x` aparece na expre
 (print (membro-prof 5 '(1 2 3 (4 5))))
 (print (membro-prof 5 '(1 2 (3 (5 4)))))
 </textarea>
-<!-- (print (membro-prof '() '(1 2 3))) -->
 <div class="output"></div>
 <div class="output"></div>
 <pre class="verifier">function(str, info) { return multiEval(str, info); }</pre>
 <button class="go">Rodar</button>
 </div>
+-->
 
 OBS.: `(consp x)` indica se x é uma lista com pelo menos um elemento
 
