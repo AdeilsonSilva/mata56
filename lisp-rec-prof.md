@@ -51,10 +51,13 @@ Implemente a função `(membro-prof x expr)`, que indica se `x` aparece na expre
 <textarea class="code">
 (defun membro-prof (x lista)
   (cond
+    ; nenhum átomo é membro da lista vazia
     ((null lista) Nil)
+    ; 1o elemento é uma lista não-vazia
     ((consp (car lista))
       (or (membro-prof x (car lista))
           (membro-prof x (cdr lista))))
+    ; 1o elemento é um átomo
     (t
       (or (equal (car lista) x)
           (membro-prof x (cdr lista))))))
@@ -101,8 +104,21 @@ Modifique a função anterior para contar o número de ocorrências de `x` na ex
 
 <div class="lesson">
 <textarea class="code">
-(defun conta-ocorrencias-prof (x expr)
-  ...)
+(defun conta-prof (x lista)
+  (cond
+    ((null lista) 0)
+    ; 1o elem é uma lista não-vazia
+    ((consp (car lista))
+      (+ (conta-prof x (car lista))
+         (conta-prof x (cdr lista))))
+    ; 1o elemento é um átomo
+    ((equal x (car lista)) 
+      (+ 1 (conta-prof x (cdr lista)))) 
+    (t (conta-prof x (cdr lista)))))
+
+; testes
+(print (conta-prof j '(c ((b a)) (d (e (c))) g)))
+(print (conta-prof c '(c ((b a)) (d (e (c))) g)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>

@@ -2,36 +2,38 @@
 <html>
 <title>{{ page.title }}</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+<link rel="stylesheet" href="{{site.baseurl}}/css/main.css">
 <!-- Theses are just icons config - created with realfavicongenerator.net -->
-<link rel="apple-touch-icon" sizes="57x57" href="assets/images/icons/apple-touch-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="assets/images/icons/apple-touch-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="assets/images/icons/apple-touch-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="assets/images/icons/apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="assets/images/icons/apple-touch-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="assets/images/icons/apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="assets/images/icons/apple-touch-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="assets/images/icons/apple-touch-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/apple-touch-icon-180x180.png">
-<link rel="icon" type="image/png" href="assets/images/icons/favicon-32x32.png" sizes="32x32">
-<link rel="icon" type="image/png" href="assets/images/icons/android-chrome-192x192.png" sizes="192x192">
-<link rel="icon" type="image/png" href="assets/images/icons/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/png" href="assets/images/icons/favicon-16x16.png" sizes="16x16">
-<link rel="manifest" href="assets/images/icons/manifest.json">
-<link rel="mask-icon" href="assets/images/icons/safari-pinned-tab.svg" color="#5bbad5">
-<link rel="shortcut icon" href="assets/images/icons/favicon.ico">
+<link rel="apple-touch-icon" sizes="57x57" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/assets/images/icons/apple-touch-icon-180x180.png">
+<link rel="icon" type="image/png" href="{{site.baseurl}}/assets/images/icons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="{{site.baseurl}}/assets/images/icons/android-chrome-192x192.png" sizes="192x192">
+<link rel="icon" type="image/png" href="{{site.baseurl}}/assets/images/icons/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="{{site.baseurl}}/assets/images/icons/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="{{site.baseurl}}/assets/images/icons/manifest.json">
+<link rel="mask-icon" href="{{site.baseurl}}/assets/images/icons/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="{{site.baseurl}}/assets/images/icons/favicon.ico">
 <meta name="msapplication-TileColor" content="#ffc40d">
-<meta name="msapplication-TileImage" content="assets/images/icons/mstile-144x144.png">
-<meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
+<meta name="msapplication-TileImage" content="{{site.baseurl}}/assets/images/icons/mstile-144x144.png">
+<meta name="msapplication-config" content="{{site.baseurl}}/assets/images/icons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="{{site.baseurl}}/assets/submissao/submissao.css">
 <!-- You can remove or leave at is -->
 <!-- Stylesheets system - please don't remove :) -->
-<link rel="stylesheet" href="assets/main.css">
-<link rel="stylesheet" href="assets/codemirror/codemirror.css">
-<link rel="stylesheet" href="assets/codemirror/addons/show-hint.css">
-<link rel="stylesheet" href="assets/codemirror/addons/lint.css">
-<link rel="stylesheet" href="assets/codemirror/addons/fullscreen.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/main.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/codemirror/codemirror.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/codemirror/addons/show-hint.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/codemirror/addons/lint.css">
+<link rel="stylesheet" href="{{site.baseurl}}/assets/codemirror/addons/fullscreen.css">
 
 <script type="text/javascript">
 // Adds the implementation for Array.prototype.concatAll()
@@ -87,13 +89,15 @@ function showLessonErrorMessage(exp, got, note, div){
 	div.className = "info";
 }
 </script>
-<script type="text/javascript" src="assets/jquery/jquery.min.js"></script>
+
+<script type="text/javascript" src="{{site.baseurl}}/assets/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/assets/jquery-ui/jquery-ui.min.js"></script>
 <!-- Lisp -->
-<script type="text/javascript" src="assets/javathcript/Javathcript.js"></script>
-<script type="text/lisp" src="assets/javathcript/prelude.lsp"></script>
+<script type="text/javascript" src="{{site.baseurl}}/assets/javathcript/Javathcript.js"></script>
+<script type="text/lisp" src="{{site.baseurl}}/assets/javathcript/prelude.lsp"></script>
 <!-- Javascript Functional Programming -->
-<script type="text/javascript" src="assets/underscore/underscore-min.js"></script>
-<script type="text/javascript" src="assets/ramda/ramda.min.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/assets/underscore/underscore-min.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/assets/ramda/ramda.min.js"></script>
 
 <script type="text/javascript">
 function isObject(obj) {
@@ -138,6 +142,55 @@ function multiEvalLisp(str, info) {
 <div class="loader-section section-right"></div>
 </div>
 
+<!-- <button class="show-answers">Respostas</button> -->
+<script type="text/javascript">
+	function obtemRespostasJson() {
+		
+		// editor.getValue()
+
+		var answers = codeMirrorEditors.map(ed => ed.getValue());
+		// var answers = [];
+		// $(".lesson").each(function(idx, item) {
+		// 	var code = $(".code", item)[0];
+		// 	answers.push($(code).val());
+		// });
+
+		json = JSON.stringify({answers : answers});
+
+		return json;
+	}
+
+	$('.show-answers').on('click', function () {
+		var json = obtemRespostasJson();
+		alert(json);
+	});
+</script>
+
+<!-- Login -->
+<div id="loginbar">
+    <span>Nome:</span>
+    <span id="loginbar-nome">?</span>
+    <span> | Matrícula:</span>
+    <span id="loginbar-matricula">?</span>
+
+    <button onclick="enviaRespostas()" style="float: right;">Enviar respostas</button>
+	<button onclick="showLogin();" style="float: right;">Login</button>
+	<button onclick="logout();" style="float: right;">Logout</button>
+</div>
+<div id="dialog" title="Login" style="display: none">
+    <form autocomplete="off">
+        <input id="nome" type="text" size="25" placeholder="Nome Completo" /><br/>
+        <input id="matricula" type="text" size="25" placeholder="Matrícula" /><br/>
+        <input id="senha" type="password" size="25" placeholder="Senha" /><br/>
+        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px" />
+    </form>
+</div>
+<script type="text/javascript" src="{{site.baseurl}}/assets/submissao/submissao.js"></script>
+<script type="text/javascript">
+	checaUsuario();
+</script>
+<!-- /Login -->
+
 {{ content }}
 
 <div id="START-EXERCISE"></div>
@@ -155,23 +208,24 @@ function multiEvalLisp(str, info) {
 	};
 </script>
 
- --><!-- Libraries for interface -->
-<script src="assets/codemirror/codemirror.js"></script>
-<script src="assets/codemirror/commonlisp.js"></script>
+ -->
+<!-- Libraries for interface -->
+<script src="{{site.baseurl}}/assets/codemirror/codemirror.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/commonlisp.js"></script>
 <!-- Some code mirrors addons -->
-<script src="assets/codemirror/javascript.js"></script>
-<script src="assets/codemirror/addons/matchbrackets.js"></script>
-<script src="assets/codemirror/addons/autorefresh.js"></script>
-<script src="assets/codemirror/addons/javascript-hint.js"></script>
-<script src="assets/codemirror/addons/jshint.js"></script>
-<script src="assets/codemirror/addons/javascript-lint.js"></script>
-<script src="assets/codemirror/addons/lint.js"></script>
-<script src="assets/codemirror/addons/show-hint.js"></script>
-<script src="assets/codemirror/addons/fullscreen.js"></script>
-<script src="assets/codemirror/addons/active-line.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/javascript.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/matchbrackets.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/autorefresh.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/javascript-hint.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/jshint.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/javascript-lint.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/lint.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/show-hint.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/fullscreen.js"></script>
+<script src="{{site.baseurl}}/assets/codemirror/addons/active-line.js"></script>
 
 <!-- APP LIBRARIES --> 
-<script src="assets/app/wordlist.js"></script>
+<script src="{{site.baseurl}}/assets/app/wordlist.js"></script>
 
 <script type="text/javascript">
 	// Hide the remain exercises without remove markdown support
