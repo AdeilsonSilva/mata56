@@ -5,6 +5,10 @@ date:   2016-03-14 16:40:00 -0300
 categories: aula
 ---
 
+<script type="text/javascript">
+    window.apostila = "currying";
+</script>
+
 # Programação funcional
 
 ## Currying

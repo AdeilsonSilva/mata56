@@ -29,7 +29,10 @@ function checaUsuario() {
 
 function enviaRespostas() {
     $.post(URL_PREFIX + "save.php",
-        {answers: obtemRespostasJson()},
+        {
+            answers: obtemRespostasJson(),
+            apostila: window.apostila
+        },
         processaRetorno);
 }
 

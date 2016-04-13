@@ -6,6 +6,7 @@ categories: aula
 ---
 
 <script type="text/javascript">
+    window.apostila = "lisp-rec-prof";
     simplesEval = simplesEvalLisp;
     multiEval = multiEvalLisp;
     window.codeMirrorLanguage = "commonlisp";

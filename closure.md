@@ -5,6 +5,10 @@ date:   2016-03-09 16:40:00 -0300
 categories: aula
 ---
 
+<script type="text/javascript">
+    window.apostila = "closure";
+</script>
+
 # Programação funcional
 
 ## Closures

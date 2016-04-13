@@ -4,6 +4,7 @@
 	// header("access-control-allow-origin: *");
 
   	$answers = $_POST["answers"];
+  	$apostila = $_POST["apostila"];
   	$nome = $_SESSION["nome"];
   	$matricula = $_SESSION["matricula"];
 
@@ -22,15 +23,16 @@
 	}
 	mysqli_query($conn, "SET NAMES 'utf8'");
 
-	mysqli_query($conn, "CREATE TABLE IF NOT EXISTS prova (
+	mysqli_query($conn, "CREATE TABLE IF NOT EXISTS resposta (
 			timestamp DATETIME,
+			apostila VARCHAR(20),
 			nome VARCHAR(256),
 			matricula VARCHAR(20),
 			answers TEXT
 		);");
 
-    $sql = $conn->prepare("INSERT INTO prova (timestamp, nome, matricula, answers) VALUES (NOW(), ?, ?, ?);");
-	$sql->bind_param("sss", $nome, $matricula, $answers);
+    $sql = $conn->prepare("INSERT INTO resposta (timestamp, apostila, nome, matricula, answers) VALUES (NOW(), ?, ?, ?, ?);");
+	$sql->bind_param("ssss", $apostila, $nome, $matricula, $answers);
 	$result = $sql->execute();
 
 	echo json_encode(array('success' => true, msg => 'Os dados foram salvos.'));
