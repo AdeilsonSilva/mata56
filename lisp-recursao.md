@@ -6,6 +6,7 @@ categories: aula
 ---
 
 <script type="text/javascript">
+    window.apostila = "lisp-recursao";
     simplesEval = simplesEvalLisp;
     multiEval = multiEvalLisp;
     window.codeMirrorLanguage = "commonlisp";

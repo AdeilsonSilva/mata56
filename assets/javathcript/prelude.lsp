@@ -25,6 +25,7 @@
 (defun oddp (x) (/= (rem x 2) 1))
 (defun list-member (E L) (cond ((null L) Nil) ((equal E (first L))  't) ('t (list-member E (rest L)))))
 (defun map (F L) (if (null L) Nil (cons (F (head L)) (map F (tail L)))))
+(defun listp (x) (or (null x) (consp x)))
 
 ; CADDRs
 

@@ -5,6 +5,10 @@ date:   2016-03-23 16:40:00 -0300
 categories: aula
 ---
 
+<script type="text/javascript">
+    window.apostila = "evaluation-exercicio";
+</script>
+
 # Programação funcional
 
 ## Exercícios
