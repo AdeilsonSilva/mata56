@@ -133,7 +133,21 @@ Crie uma função, `(subst x y expr)`, que substitua as oorrências de `x` por `
 
 <div class="lesson">
 <textarea class="code">
+(defun subst (x y lista)
+  (cond
+    ; lista vazia
+    ((null lista) Nil)
+    ; 1o elemento da lista é uma lista
+    ((consp (car lista))
+      (cons (subst x y (car lista)) (subst x y (cdr lista))))
+    ; 1o elemento da lista é um átomo igual a x
+    ((equal (car lista) x)
+      (cons y (subst x y (cdr lista))))
+    ; 1o elemento da lista é um átomo diferente de x
+    (t
+      (cons (car lista) (subst x y (cdr lista))))))))
 
+(print (subst 1 0 '(1 (1 3 (5 1)))))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
