@@ -88,3 +88,8 @@ loginDialog.find("form").on("submit", function (evt) {
     submitLoginDialog();
 });
 
+/////////////////
+// Previne expiração da sessão
+
+// faz uma requisição a cada 10 minutos
+setInterval(checaUsuario, 10 * 60 * 1000);
