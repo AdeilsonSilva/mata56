@@ -11,9 +11,11 @@ function processaRetorno(json) {
 
 function processaLogin(json) {
     console.log(data);
-    var data = JSON.parse(json);
-    $("#loginbar-nome").text(data.userinfo.nome);
-    $("#loginbar-matricula").text(data.userinfo.matricula);
+    var data = JSON.parse(json),
+        nome = data.userinfo.nome || '',
+        matricula = data.userinfo.matricula || '';
+    $("#loginbar-nome").text(nome);
+    $("#loginbar-matricula").text(matricula);
     processaRetorno(json);
 }
 
@@ -33,7 +35,7 @@ function enviaRespostas() {
             answers: obtemRespostasJson(),
             apostila: window.apostila
         },
-        processaRetorno);
+        processaLogin);
 }
 
 function login(data) {

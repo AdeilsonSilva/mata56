@@ -8,8 +8,15 @@
   	$nome = $_SESSION["nome"];
   	$matricula = $_SESSION["matricula"];
 
+  	function converteMsg($msg) {
+  		$msg['userinfo'] = array();
+  		$msg['userinfo']['nome'] = $nome || '';
+  		$msg['userinfo']['matricula'] = $matricula || '';
+  		return json_encode($msg);
+  	}
+
   	if ($nome == NULL || $matricula == NULL) {
-  		die(json_encode(array(
+  		die(converteMsg(array(
   			'success' => false,
   			'msg' => 'Faça login primeiro!')));
   	}
@@ -17,7 +24,7 @@
 	$conn = mysqli_connect("localhost", "root", "root", "mata56");
 
 	if (!$conn) {
-  		die(json_encode(array(
+  		die(converteMsg(array(
   				'success' => false,
   				'msg' => 'Erro de banco de dados: ' . mysqli_connect_error())));
 	}
@@ -35,5 +42,5 @@
 	$sql->bind_param("ssss", $apostila, $nome, $matricula, $answers);
 	$result = $sql->execute();
 
-	echo json_encode(array('success' => true, msg => 'Os dados foram salvos.'));
+	echo converteMsg(array('success' => true, msg => 'Os dados foram salvos.'));
 ?>
