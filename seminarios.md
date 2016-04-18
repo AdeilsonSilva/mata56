@@ -14,3 +14,22 @@ date: 2016-05-16 16:40:00 -0300
     + **Sugestões**: linguagens de script (ex.: Ruby, Python), linguagens para domínios específicos (ex.: R, Matlab), linguagens para sistemas distribuídos (ex.: Erlang, Elixir), linguagens funcionais (ex.: Haskell), outros (XSLT, Swift)
 - **Abordagem**: a equipe deve explicar as principais características da linguagem escolhida, dando destaque às características que a diferenciam das outras. As características devem ser ilustradas com exemplos de código-fonte.
 
+Apresentações:
+
+- 16/05
+    + Ruby: Adeilson, Jefferson, Mateus
+- 18/05
+    + Shell: Jailton, Tiago Gonçalves, Samuel
+    + Elixir: Cristiano, Alesson, Felipe Rabello
+    + Lua: Gabriel, Alan, Marcos Ricardo
+- 23/05
+    + Python: Genicleito, Gustavo, Wilton
+    + R: Krysthian, Hugo, Natan
+    + PHP: Thiago de Oliveira, Vinicius, Rafael Coimbra
+- 25/05
+    + MATLAB: Michell, Junot, Beatriz
+    + React: Tácio, Igor, Bruno
+    + Haskell: Jeferson, Ramon, Tiago Silva
+- 30/05
+    + ...
+

@@ -1,7 +1,7 @@
 ---
 layout: page
 categories: avaliacao
-title: "(11/05, 10%) Miniteste"
+title: "(11/05, 10%) Miniteste sobre concorrência"
 date: 2016-05-11 16:40:00 -0300
 ---
 

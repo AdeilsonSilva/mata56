@@ -1,8 +1,8 @@
 ---
 layout: page
 categories: avaliacao
-title: "(27/04, 35%) Prova sobre programação funcional"
-date: 2016-04-27 16:40:00 -0300
+title: "(04/05, 35%) Prova sobre programação funcional"
+date: 2016-05-04 16:40:00 -0300
 ---
 
 Assunto:

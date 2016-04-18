@@ -12,6 +12,8 @@ categories: aula
     window.codeMirrorLanguage = "commonlisp";
 </script>
 
+# Exercícios sobre recursão de cauda
+
 ## soma-lista
 
 <div class="lesson">
