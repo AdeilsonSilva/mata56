@@ -142,30 +142,6 @@ function multiEvalLisp(str, info) {
 <div class="loader-section section-right"></div>
 </div>
 
-<!-- <button class="show-answers">Respostas</button> -->
-<script type="text/javascript">
-	function obtemRespostasJson() {
-		
-		// editor.getValue()
-
-		var answers = codeMirrorEditors.map(ed => ed.getValue());
-		// var answers = [];
-		// $(".lesson").each(function(idx, item) {
-		// 	var code = $(".code", item)[0];
-		// 	answers.push($(code).val());
-		// });
-
-		json = JSON.stringify({answers : answers});
-
-		return json;
-	}
-
-	$('.show-answers').on('click', function () {
-		var json = obtemRespostasJson();
-		alert(json);
-	});
-</script>
-
 <!-- Login -->
 <div id="loginbar">
     <span>Nome:</span>

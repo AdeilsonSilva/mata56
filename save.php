@@ -4,7 +4,10 @@
 	// header("access-control-allow-origin: *");
 
   	$answers = $_POST["answers"];
-  	$apostila = $_POST["apostila"];
+    $apostila = $_POST["apostila"];
+    if (isset($_POST["buttonIndex"])) {
+  	  $buttonIndex = $_POST["buttonIndex"];
+    }
   	$nome = $_SESSION["nome"];
   	$matricula = $_SESSION["matricula"];
 
@@ -35,11 +38,13 @@
 			apostila VARCHAR(20),
 			nome VARCHAR(256),
 			matricula VARCHAR(20),
+      button_index INT,
 			answers TEXT
 		);");
 
-    $sql = $conn->prepare("INSERT INTO resposta (timestamp, apostila, nome, matricula, answers) VALUES (NOW(), ?, ?, ?, ?);");
-	$sql->bind_param("ssss", $apostila, $nome, $matricula, $answers);
+  $sql = $conn->prepare("INSERT INTO resposta (timestamp, apostila, nome, matricula, button_index, answers) VALUES (NOW(), ?, ?, ?, ?, ?);");
+	
+  $sql->bind_param("sssis", $apostila, $nome, $matricula, $buttonIndex, $answers);
 	$result = $sql->execute();
 
 	echo converteMsg(array('success' => true, msg => 'Os dados foram salvos.'));
