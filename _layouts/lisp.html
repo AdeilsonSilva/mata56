@@ -249,6 +249,12 @@ function multiEvalLisp(str, info) {
 		var info = el.children[2]; 
 		var verifierScript = el.children[3].textContent;
 		var go = el.children[4];
+		
+		var langClasses = $(code).attr('class').split(/\s+/).filter(klass => klass.startsWith('lang-'));
+		var language = (window.codeMirrorLanguage || "javascript");
+		if (langClasses.length > 0) {
+			language = langClasses[0].substring(5);
+		}
 
 		code.style.visibility = null;
 		code.style.display = null;
@@ -257,7 +263,7 @@ function multiEvalLisp(str, info) {
 
 		var codeMirror = CodeMirror.fromTextArea(code, {
 			    lineNumbers: true,
-			    mode: (window.codeMirrorLanguage || "javascript"),
+			    mode: language,
 			    gutters: ["CodeMirror-lint-markers"],
 			    lint: true,
 				matchBrackets: true,
