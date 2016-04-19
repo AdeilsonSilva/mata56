@@ -8,14 +8,20 @@ date:   2016-04-04 16:40:00 -0300
     window.apostila = "teste";
 </script>
 
-Questão em Javascript:
+## Javascript
 
 <div class="lesson">
 <textarea class="code lang-javascript">
-function alo() {
-    console.log("Alô mundo");
+// ---
+function soma(a, b) {
+    return a + b;
 }
-alo();
+// --- testes fixos
+teste(0, soma(0, 0));
+// --- agora crie seus próprios testes
+//     (crie pelo menos 2)
+teste(4, soma(2, 2));
+teste(5, soma(2, 2));
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -23,11 +29,13 @@ alo();
 <button class="go">Rodar</button>
 </div>
 
+## Lisp
 
 <div class="lesson">
 <textarea class="code lang-commonlisp">
-(defun alo () (print "alo"))
-(alo)
+(defun identity (x) x)
+(teste '(1 2 3) (identity '(1 2 3)))
+(teste '(3 3 3) (identity '(1 2 3)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>

@@ -116,20 +116,51 @@ $(document).ready(function() {
 	});
 });
 
+testesCertos = 0;
+testesErrados = 0;
+
+function zeraTestes() {
+	testesCertos = 0;
+	testesErrados = 0;
+}
+
+function imprimeResultadoTestes() {
+	if (testesCertos + testesErrados > 0) {
+		console.log("*** Testes certos: " + testesCertos + "/" + (testesCertos + testesErrados));
+	}
+}
+
 function simplesEval(str, info) {
+	zeraTestes();
 	var cmd = "(function(){" + str + "})();";
 	eval(cmd);
+	imprimeResultadoTestes();
 	return "Success!";
 }
 function simplesEvalLisp(str, info) {
+	zeraTestes();
 	var val = Javathcript.eval(str);
 	printObj(val);
+	imprimeResultadoTestes();
 	return "Success!";
 }
 function multiEvalLisp(str, info) {
+	zeraTestes();
 	Javathcript.evalMulti(str);
+	imprimeResultadoTestes();
 	return "Success!";
 }
+
+function teste(expected, actual) {
+	if (JSON.stringify(expected) === JSON.stringify(actual)) {
+		testesCertos += 1;
+		console.log("OK!");
+	} else {
+		testesErrados += 1;
+		console.log("ERRO! Esperado: " + expected + "; obtido: " + actual);
+	}
+}
+
 </script>
 
 <!-- <xmp theme="united" style="display:none;"> -->
@@ -295,14 +326,14 @@ function multiEvalLisp(str, info) {
 				alert(ex);
 			}
 
-			if((output.textContent !== "Success!") && (output.textContent !== "YUPPPEEEE!")){
-				output.className = "error";
-				output.textContent = "Error!";
-				return;
-			}
+			// if((output.textContent !== "Success!") && (output.textContent !== "YUPPPEEEE!")){
+			// 	output.className = "error";
+			// 	output.textContent = "Error!";
+			// 	return;
+			// }
 
-			output.className = "success";
-			info.className = "output";
+			// output.className = "success";
+			// info.className = "output";
 		};
 	});
 
