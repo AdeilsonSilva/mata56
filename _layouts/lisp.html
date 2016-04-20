@@ -126,7 +126,7 @@ function zeraTestes() {
 
 function imprimeResultadoTestes() {
 	if (testesCertos + testesErrados > 0) {
-		console.log("*** Testes certos: " + testesCertos + "/" + (testesCertos + testesErrados));
+		console.log("%c*** Testes certos: " + testesCertos + "/" + (testesCertos + testesErrados), "color: blue;");
 	}
 }
 
@@ -154,10 +154,10 @@ function multiEvalLisp(str, info) {
 function teste(expected, actual) {
 	if (JSON.stringify(expected) === JSON.stringify(actual)) {
 		testesCertos += 1;
-		console.log("OK!");
+		console.log("%cOK!", "color: green;");
 	} else {
 		testesErrados += 1;
-		console.log("ERRO! Esperado: " + expected + "; obtido: " + actual);
+		console.log("%cERRO! Esperado: " + expected + "; obtido: " + actual, "color: red;");
 	}
 }
 
