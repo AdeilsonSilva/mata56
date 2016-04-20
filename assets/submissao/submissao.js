@@ -63,7 +63,7 @@ function enviaRespostas(opcoes, silent) {
     }
     $.post(URL_PREFIX + "save.php",
         data,
-        function () { processaLogin(silent); });
+        function (json) { processaLogin(json, silent); });
 }
 
 function login(data) {
