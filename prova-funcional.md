@@ -8,12 +8,12 @@ date: 2016-05-04 16:40:00 -0300
 Assunto:
 
 - Funções como cidadãos de primeira classe
-- Funções de alta ordem
+- [Funções de alta ordem](funcional)
 - [Escopo, nomes e vinculação](nomes)
 - [Closures](closure)
 - [Currying, aplicação parcial e composição de funções](currying)
 - [Estratégias de avaliação](evaluation)
-- Generators
+- [Generators](evaluation)
 - [Lisp](lisp)
 - [Recursão de cauda](lisp-recursao)
 - [Recursão profunda](lisp-rec-prof)
