@@ -13,8 +13,8 @@
 
   	function converteMsg($msg) {
   		$msg['userinfo'] = array();
-  		$msg['userinfo']['nome'] = $nome || '';
-  		$msg['userinfo']['matricula'] = $matricula || '';
+  		$msg['userinfo']['nome'] = $_SESSION["nome"];
+  		$msg['userinfo']['matricula'] = $_SESSION["matricula"];
   		return json_encode($msg);
   	}
 
