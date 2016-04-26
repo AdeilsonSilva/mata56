@@ -140,6 +140,14 @@ loginDialog.find("form").on("submit", function (evt) {
 });
 
 /////////////////
+
+function rodaTudo() {
+    $('.go').each(function (idx, btn) {
+        $(btn).click();
+    })
+}
+
+/////////////////
 // Previne expiração da sessão
 
 $(document).ready(function() {
