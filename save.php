@@ -34,6 +34,7 @@
 	mysqli_query($conn, "SET NAMES 'utf8'");
 
 	mysqli_query($conn, "CREATE TABLE IF NOT EXISTS resposta (
+      id INT AUTO_INCREMENT PRIMARY KEY,
 			timestamp DATETIME,
 			apostila VARCHAR(20),
 			nome VARCHAR(256),

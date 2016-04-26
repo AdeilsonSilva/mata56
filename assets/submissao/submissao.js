@@ -43,6 +43,13 @@ function carregaRespostasJson(json) {
     });
 }
 
+function carregaRespostasId(id) {
+    recebeRespostas(id, function (data) {
+        console.log(data);
+        carregaRespostasJson(data);
+    });
+}
+
 /////////////////
 // Requests
 /////////////////
@@ -64,6 +71,20 @@ function enviaRespostas(opcoes, silent) {
     $.post(URL_PREFIX + "save.php",
         data,
         function (json) { processaLogin(json, silent); });
+}
+
+function recebeRespostas(id, callback) {
+    $.post(URL_PREFIX + "load.php", {id: id}, callback);
+}
+
+function listRespostasApostila(apostila) {
+    if (!apostila) {
+        apostila = window.apostila;
+    }
+    $.post(URL_PREFIX + "list.php", {apostila: apostila},
+        function (data) {
+            console.log(JSON.parse(data));
+        });
 }
 
 function login(data) {
