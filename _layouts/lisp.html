@@ -98,6 +98,7 @@ function showLessonErrorMessage(exp, got, note, div){
 <!-- Javascript Functional Programming -->
 <script type="text/javascript" src="{{site.baseurl}}/assets/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="{{site.baseurl}}/assets/ramda/ramda.min.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/assets/async/async.min.js"></script>
 
 <script type="text/javascript">
 function isObject(obj) {
@@ -303,9 +304,9 @@ function teste(expected, actual) {
 				indentWithTabs: false,
 				hint: true,
 				extraKeys: {
-					"F4": function(cm) {
-						cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-					},
+					// "F4": function(cm) {
+					// 	cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+					// },
 					"Esc": function(cm) {
 						if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
 					},
