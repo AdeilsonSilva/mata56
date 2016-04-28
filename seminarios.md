@@ -33,5 +33,5 @@ Apresentações:
     + React: Tácio, Igor, Bruno
     + Haskell: Jeferson, Ramon, Tiago Silva
 - 30/05
-    + ...
+    + C++:  Florencia, Lucas Laranjeiras, Tiago Dória
 
