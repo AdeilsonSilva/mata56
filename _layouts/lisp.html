@@ -98,6 +98,7 @@ function showLessonErrorMessage(exp, got, note, div){
 <!-- Javascript Functional Programming -->
 <script type="text/javascript" src="{{site.baseurl}}/assets/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="{{site.baseurl}}/assets/ramda/ramda.min.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/assets/async/async.min.js"></script>
 
 <script type="text/javascript">
 function isObject(obj) {
@@ -116,20 +117,51 @@ $(document).ready(function() {
 	});
 });
 
+testesCertos = 0;
+testesErrados = 0;
+
+function zeraTestes() {
+	testesCertos = 0;
+	testesErrados = 0;
+}
+
+function imprimeResultadoTestes() {
+	if (testesCertos + testesErrados > 0) {
+		console.log("%c*** Testes certos: " + testesCertos + "/" + (testesCertos + testesErrados), "color: blue;");
+	}
+}
+
 function simplesEval(str, info) {
+	zeraTestes();
 	var cmd = "(function(){" + str + "})();";
 	eval(cmd);
+	imprimeResultadoTestes();
 	return "Success!";
 }
 function simplesEvalLisp(str, info) {
+	zeraTestes();
 	var val = Javathcript.eval(str);
 	printObj(val);
+	imprimeResultadoTestes();
 	return "Success!";
 }
 function multiEvalLisp(str, info) {
+	zeraTestes();
 	Javathcript.evalMulti(str);
+	imprimeResultadoTestes();
 	return "Success!";
 }
+
+function teste(expected, actual) {
+	if (JSON.stringify(expected) === JSON.stringify(actual)) {
+		testesCertos += 1;
+		console.log("%cOK!", "color: green;");
+	} else {
+		testesErrados += 1;
+		console.log("%cERRO! Esperado: " + expected + "; obtido: " + actual, "color: red;");
+	}
+}
+
 </script>
 
 <!-- <xmp theme="united" style="display:none;"> -->
@@ -141,30 +173,6 @@ function multiEvalLisp(str, info) {
 <div class="loader-section section-left"></div>
 <div class="loader-section section-right"></div>
 </div>
-
-<!-- <button class="show-answers">Respostas</button> -->
-<script type="text/javascript">
-	function obtemRespostasJson() {
-		
-		// editor.getValue()
-
-		var answers = codeMirrorEditors.map(ed => ed.getValue());
-		// var answers = [];
-		// $(".lesson").each(function(idx, item) {
-		// 	var code = $(".code", item)[0];
-		// 	answers.push($(code).val());
-		// });
-
-		json = JSON.stringify({answers : answers});
-
-		return json;
-	}
-
-	$('.show-answers').on('click', function () {
-		var json = obtemRespostasJson();
-		alert(json);
-	});
-</script>
 
 <!-- Login -->
 <div id="loginbar">
@@ -273,6 +281,12 @@ function multiEvalLisp(str, info) {
 		var info = el.children[2]; 
 		var verifierScript = el.children[3].textContent;
 		var go = el.children[4];
+		
+		var langClasses = $(code).attr('class').split(/\s+/).filter(klass => klass.startsWith('lang-'));
+		var language = (window.codeMirrorLanguage || "javascript");
+		if (langClasses.length > 0) {
+			language = langClasses[0].substring(5);
+		}
 
 		code.style.visibility = null;
 		code.style.display = null;
@@ -281,7 +295,7 @@ function multiEvalLisp(str, info) {
 
 		var codeMirror = CodeMirror.fromTextArea(code, {
 			    lineNumbers: true,
-			    mode: (window.codeMirrorLanguage || "javascript"),
+			    mode: language,
 			    gutters: ["CodeMirror-lint-markers"],
 			    lint: true,
 				matchBrackets: true,
@@ -290,9 +304,9 @@ function multiEvalLisp(str, info) {
 				indentWithTabs: false,
 				hint: true,
 				extraKeys: {
-					"F4": function(cm) {
-						cm.setOption("fullScreen", !cm.getOption("fullScreen"));
-					},
+					// "F4": function(cm) {
+					// 	cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+					// },
 					"Esc": function(cm) {
 						if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
 					},
@@ -313,14 +327,14 @@ function multiEvalLisp(str, info) {
 				alert(ex);
 			}
 
-			if((output.textContent !== "Success!") && (output.textContent !== "YUPPPEEEE!")){
-				output.className = "error";
-				output.textContent = "Error!";
-				return;
-			}
+			// if((output.textContent !== "Success!") && (output.textContent !== "YUPPPEEEE!")){
+			// 	output.className = "error";
+			// 	output.textContent = "Error!";
+			// 	return;
+			// }
 
-			output.className = "success";
-			info.className = "output";
+			// output.className = "success";
+			// info.className = "output";
 		};
 	});
 

@@ -81,3 +81,7 @@
 		(import-math (lambda (funcname) 
 							 (def-dyn funcname (method math funcname)))) )
 	(map import-math '(sin cos tan asin acos atan floor max min log abs ceil pow exp atan2 random sqrt round))	)
+
+; testes
+
+(def teste (method window "teste"))
