@@ -111,7 +111,7 @@ Aplicar uma função de um valor para criar um novo valor é chamado um **proje�
 
 Um array em Javascript é um objeto **mutável**, isto é, ele pode ser modificado. As funções que modificam o array são chamadas de funções **destrutivas**. As funções não-destrutivas são aquelas que não modificam o array; em vez disso, elas retornam um novo array que é construído a partir do array passado como parâmetro.
 
-Do ponto de vista das linguagens funcionais, uma função deve apenas receber valores como parâmetro e retornar um valor. Se a função modifica algum parâmetro, altera variáveis globais, ou acessa entrada/saída (ex.: modifica um arquivo), esses comportamentos são considerados **efeitos colaterais** de se chamar a função, e a função é dita **não-pura**. 
+Do ponto de vista das linguagens funcionais, uma função deve apenas receber valores como parâmetro e retornar um valor. Se a função modifica algum parâmetro, altera variáveis globais, ou acessa entrada/saída (ex.: modifica um arquivo), esses comportamentos são considerados **efeitos colaterais** de se chamar a função, e a função é dita **não-pura**.
 
 Uma função pura, sem efeitos colaterais, vai sempre retornar o mesmo resultado para uma determinada entrada, não importa quantas vezes a função seja chamada.
 
@@ -217,7 +217,7 @@ function mapIdTitle() {
 
     // ------------ INSERT CODE HERE! -----------------------------------
     // Use a função map para acumular {id, title} para cada video
-    return newReleases.map....... // finalize esta expressão
+    return newReleases.map(video => ({id: video.id, title: video.title})); // finalize esta expressão
     // ------------ INSERT CODE HERE! -----------------------------------
 }
 // Este código verifica se sua resposta está correta.
@@ -235,6 +235,7 @@ Questão 21. Implemente a sua própria versão de `map` iterando sobre uma array
 function meuMap(array, f) {
     var resultado = [];
     // INSERT CODE HERE
+    array.forEach(item => resultado.push(f(item)));
     return resultado;
 }
 // Código de checagem
@@ -247,6 +248,18 @@ A função `filter` recebe um array e um **predicado** (função que retorna `tr
 Questão 22. Implemente a função `meuFilter`
 
 Questão 23. Use a função `meuFilter` para retornar apenas os filmes cujo `id` seja um número par.
+
+```javascript
+function meuFilter(array, p) {
+    var ans = [];
+    array.forEach(function(item){
+        if(p(item))
+          ans.push(item);
+    });
+    return ans;
+}
+console.log(meuFilter(newReleases, item => item.id % 2 == 0));
+```
 
 Questão 24. Usando `filter` e `map`, retorne uma lista dos ids dos filmes com nota (rating) 5.0. Use o código abaixo:
 
@@ -297,6 +310,9 @@ function rating5() {
     return videos;
 }
 rating5();
+
+// MY ANSWER
+console.log(newReleases.filter(film => film.rating == 5).map(film => film.id));
 ```
 
 
