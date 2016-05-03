@@ -327,13 +327,13 @@ function maiorBoxArtForEach() {
             { width: 300, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
             { width: 425, height:150, url:"http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
         ],
-        currentSize,
-        maxSize = -1,
-        largestBoxart;
+        largestBoxart = 0;
 
     boxarts.forEach(function(boxart) {
         // TODO: insira código aqui
-        // ----
+        if(boxart.width * boxart.height > largestBoxart) {
+            largestBoxart = boxart.width * boxart.height;
+        }
     });
 
     return largestBoxart;
@@ -343,9 +343,33 @@ ufbassert(63750, maiorBoxArtForEach());
 
 Questão 26. Igual à questão 25, mas usando reduce.
 
+```javascript
+function area(box) {
+    return box.width * box.height;
+}
+
+function maiorBoxArtForEach() {
+    var boxarts = [
+            { width: 200, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
+            { width: 150, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture150.jpg" },
+            { width: 300, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture300.jpg" },
+            { width: 425, height:150, url:"http://cdn-0.nflximg.com/images/2891/Fracture425.jpg" }
+        ];
+        largestBoxart;
+
+    largestBoxart = boxarts.reduce((largest, box) => area(box) > area(largest) ? box : largest);
+    return area(largestBoxart);
+}
+ufbassert(63750, maiorBoxArtForEach());
+```
+
 Questão 27. Retorne a URL da "boxart" de maior área. Use o código abaixo:
 
 ```javascript
+function area(box) {
+    return box.width * box.height;
+}
+
 function urlDaMaiorBoxart() {
     var boxarts = [
             { width: 200, height:200, url:"http://cdn-0.nflximg.com/images/2891/Fracture200.jpg" },
@@ -356,7 +380,7 @@ function urlDaMaiorBoxart() {
 
     // Voce deve retornar um array contendo apenas a URL da maior boxart.
     // TODO: complete o código abaixo.
-    return boxarts.reduce....
+    return [boxarts.reduce((largest, box) => area(box) > area(largest) ? box : largest).url];
 }
 ufbassert(["http://cdn-0.nflximg.com/images/2891/Fracture425.jpg"], urlDaMaiorBoxart());
 ```
