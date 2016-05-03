@@ -82,7 +82,9 @@ Vamos escrever uma versão *curried* dessa função? Essa versão deve receber `
 function primeiroGrauCurried(a) {
     return function(b) {
         // --- Escreva aqui seu código
-        return ...;
+        return function(x) {
+          return a*x+b;
+        };
         // ---
     };
 }
@@ -106,7 +108,7 @@ alert(celsiusParaFahrenheit(25));
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
-<pre class="verifier">function(str, info) { 
+<pre class="verifier">function(str, info) {
   function primeiroGrauCurried(a) {
     return function(b) {
       return function(x) {
@@ -207,7 +209,7 @@ alert(getPrimeiraInicial("Sir Arthur Conan Doyle"));
 
 Esse estilo de programar é chamado de pointfree, pois a função `getPrimeiraInicial` é definida sem declarar quais são os seus parâmetros.
 
-Agora é com você. Crie uma função para retornar a quantidade de elementos de um array cujo quadrado é ímpar. 
+Agora é com você. Crie uma função para retornar a quantidade de elementos de um array cujo quadrado é ímpar.
 
 <div class="lesson">
 <textarea class="code">
@@ -221,7 +223,7 @@ function quadrado(array) {
   return R.map(x => x * x, array);
 }
 // --- complete o código:
-var qtdQuadradosImpares = R.pipe(...);
+var qtdQuadradosImpares = R.pipe(quadrado, filtraImpar, comprimento);
 // ---
 alert(qtdQuadradosImpares([2, 3, 5, 8, 13, 21]));
 </textarea>
@@ -236,7 +238,7 @@ Note que as funções passadas para `pipe`, com exceção da primeira, devem rec
 <div class="lesson">
 <textarea class="code">
 // --- complete o código:
-var qtdQuadradosImpares = R.pipe(...);
+var qtdQuadradosImpares = R.pipe(R.map(x => x*x), R.filter(x => x%2 == 1), R.length);
 // ---
 alert(qtdQuadradosImpares([2, 3, 5, 8, 13, 21]));
 </textarea>

@@ -17,11 +17,16 @@ var words = function(str) {
   return R.split(' ', str);
 };
 
+//Ex 1 Answer
+words = R.split(' ');
+console.log(words("oi oi mae ioio"));
+
 // Exercício 1a
 //==============
 // Use map para criar uma nova função que funciona com um array de strings
 
-var sentences = undefined;
+wordsInArray = R.map(R.split(' '));
+console.log(wordsInArray(["oi oi mae ioio", "Should Hane Known Better"]));
 
 
 // Exercício 2
@@ -34,6 +39,9 @@ var filterQs = function(xs) {
   }, xs);
 };
 
+//Ex 2 Answer
+var matchQs = R.match(/q/i);
+var filterQs = R.filter(x => matchQs(x).length > 0);
 
 // Exercício 3
 //==============
@@ -50,6 +58,9 @@ var max = function(xs) {
     return _mantemMaior(acc, x);
   }, -Infinity, xs);
 };
+
+// Ex 3 Answer
+var max = R.reduce(_mantemMaior, -Infinity);
 
 
 // baseado em https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch4.html

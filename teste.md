@@ -8,6 +8,7 @@ date:   2016-04-04 16:40:00 -0300
     window.apostila = "teste";
 </script>
 <script src="assets/javathcript/assert.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.19.1/ramda.min.js"></script>
 
 ## Javascript
 
