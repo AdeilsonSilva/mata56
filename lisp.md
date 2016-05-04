@@ -57,7 +57,7 @@ Note, a princípio, uma lista não tem valor definido, a não ser se enquadre em
 
 Exemplos e contra-exemplos:
 
-- `abc` ==> valor indefinido. 
+- `abc` ==> valor indefinido.
 - `(quote abc)` ==> o valor é o símbolo abc
 - `(teste 1 2 3)` ==> valor indefinido
 - `(1 2 3)` => valor indefinido
@@ -109,7 +109,7 @@ Esse conjunto de regras define o núcleo da linguagem Lisp. Outras construções
 
 ## Manipulação de strings
 
-- (length s): comprimento da string s. 
+- (length s): comprimento da string s.
     - Ex.: `(length "Fulano")`
 - (concat s1 ... sn): concatena as strings s1 ... sn.
     - Ex.: `(concat  "Alo"   ", "   "Mundo")
@@ -240,7 +240,7 @@ Agora é com você. Defina as seguintes funções:
 
 Função `(length l)` (retorna o comprimento da lista l, isto é, seu número de elementos):
 
-<!-- 
+<!--
 (defun length (l)
   (cond
     ((null l) 0)
@@ -249,11 +249,14 @@ Função `(length l)` (retorna o comprimento da lista l, isto é, seu número de
 
 <div class="lesson">
 <textarea class="code">
-(defun ...)
+(defun length (l)
+  (cond
+    ((null l) 0)
+    (t (+ (length (cdr l)) 1))))
 ; testes
 (print (length '()))
 (print (length '(1)))
-(print (length '(1 2 3)))
+(print (length '(1 4 5 2 3)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -263,14 +266,14 @@ Função `(length l)` (retorna o comprimento da lista l, isto é, seu número de
 
 Função `(filter f l)` (retorna uma cópia da lista `l` contendo apenas os elementos para os quais a função `f` retorna true):
 
-<!-- 
+<!--
 (defun filter (f l)
     (cond
         ((null l) l)
         ((f (car l)) (cons (car l) (filter f (cdr l))))
         (t (filter f (cdr l)))))
 
- 
+
 ; em Scheme:
 (define (filter f l)
     (cond
@@ -282,7 +285,11 @@ Função `(filter f l)` (retorna uma cópia da lista `l` contendo apenas os elem
 
 <div class="lesson">
 <textarea class="code">
-(defun ...)
+(defun filter (f l)
+  (cond
+    ((null l) Nil)
+    ((f (car l)) (cons (car l) (filter f (cdr l))))
+    (t (filter f (cdr l)))))
 ; testes
 (print
    (filter
@@ -297,7 +304,7 @@ Função `(filter f l)` (retorna uma cópia da lista `l` contendo apenas os elem
 
 Função `(all f l)` (indica se a função `f` retorna verdadeiro para todos os elementos de l):
 
-<!-- 
+<!--
 (defun all (f l)
   (cond
     ((null l) t)
@@ -306,7 +313,10 @@ Função `(all f l)` (indica se a função `f` retorna verdadeiro para todos os 
 
 <div class="lesson">
 <textarea class="code">
-(defun ...)
+(defun all (f l)
+  (cond
+    ((null l) t)
+    ((f (car l)) (all f (cdr l)))))
 ; testes
 (defun par (x) (= (% x 2) 0))
 (print (all par '()))
@@ -323,7 +333,10 @@ Função `(atom-list l)` (indica se todos os elementos de l são átomos):
 
 <div class="lesson">
 <textarea class="code">
-(defun ...)
+(defun atom-list (l)
+  (cond
+    ((null l) t)
+    ((atom (car l)) (atom-list (cdr l)))))
 ; testes
 ; ...
 </textarea>
@@ -336,7 +349,7 @@ Função `(atom-list l)` (indica se todos os elementos de l são átomos):
 
 Função `(member x l)` (indica se o elemento x está presente na lista l):
 
-<!-- 
+<!--
 (defun member (x l)
   (cond
     ((null l) Nil)
@@ -346,7 +359,16 @@ Função `(member x l)` (indica se o elemento x está presente na lista l):
 
 <div class="lesson">
 <textarea class="code">
-codigo
+(defun member (x l)
+  (cond
+    ((null l) Nil)
+    ((= x (car l)) t)
+    (t (member x (cdr l)))))
+; testes
+(print (member 1 '(1 5 7)))
+(print (member 1 '(3 5 7)))
+(print (member 1 '()))
+(print (member 1 '(1)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -356,7 +378,7 @@ codigo
 
 Função `(freq x l)` (indica quantas vezes o elemento x aparece na lista l):
 
-<!-- 
+<!--
 (defun freq (x l)
   (cond
     ((null l) 0)
@@ -366,9 +388,16 @@ Função `(freq x l)` (indica quantas vezes o elemento x aparece na lista l):
 
 <div class="lesson">
 <textarea class="code">
-(defun ...)
+(defun freq (x l)
+  (cond
+    ((null l) 0)
+    ((= x (car l)) (+ 1 (freq x (cdr l))))
+    (t (freq x (cdr l)))))
 ; testes
-; ...
+(print (freq 1 '(1 2 1 5)))
+(print (freq 1 '(2.5 2 3 5)))
+(print (freq 1 '()))
+(print (freq 1 '(1 1 1 1 1)))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -379,7 +408,7 @@ Função `(freq x l)` (indica quantas vezes o elemento x aparece na lista l):
 
 Função `(is-set l)` (indica se l é um conjunto, isto é, uma lista na qual todos os elementos são distintos) -- use a função member:
 
-<!-- 
+<!--
 (defun is-set (l)
   (cond
     ((null l) t)
@@ -390,6 +419,16 @@ Função `(is-set l)` (indica se l é um conjunto, isto é, uma lista na qual to
 
 <div class="lesson">
 <textarea class="code">
+(defun member (x l)
+  (cond
+    ((null l) Nil)
+    ((= x (car l)) t)
+    (t (member x (cdr l)))))
+
+(defun is-set(l)
+  (cond
+    ((null l) t)
+    ((not (member (car l) (cdr l))) (is-set (cdr l)))))
 ; testes
 (print (is-set '())) ; t
 (print (is-set '(1))) ; t
@@ -407,7 +446,7 @@ Função `(is-set l)` (indica se l é um conjunto, isto é, uma lista na qual to
 
 Função `(reduce f l i)` (aplica a função `f` sobre um acumulador para cada valor da lista `l`, da esquerda pra direita, para reduzi-la a um único valor; o valor inicial do acumulador é `i`):
 
-<!-- 
+<!--
 (defun reduce (f l i)
   (cond
     ((null l) i)
@@ -416,9 +455,13 @@ Função `(reduce f l i)` (aplica a função `f` sobre um acumulador para cada v
 
 <div class="lesson">
 <textarea class="code">
-(defun ...)
+(defun reduce (f l i)
+  (cond
+    ((null l) i)
+    (t (reduce f (cdr l) (f i (car l))))))
 ; testes
 (print (reduce + '(1 2 3) 0))
+(print (reduce - '(1 -3 3) 0))
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -430,7 +473,25 @@ Reescreva a função `(all f l)` usando `reduce`:
 
 <div class="lesson">
 <textarea class="code">
-codigo
+(defun reduce (f l i)
+  (cond
+    ((null l) i)
+    (t (reduce f (cdr l) (f i (car l))))))
+
+
+;((lambda (v1 ... vn) e) e1 ... en)
+;((lambda (x y) (cons (car x) y)) (quote (a b)) (quote (c d)))
+
+; NOT WORKING
+
+(defun par (x) (= (% x 2) 0))
+
+(defun all(f l)
+  (reduce(((lambda (i v) (cond ((null v) Nil) (t i))) i f(v)) l t)))
+
+(print (all par '(2 5 6)))
+(print (all par '(2 6)))
+
 </textarea>
 <div class="output"></div>
 <div class="output"></div>

@@ -113,8 +113,8 @@ Modifique a função anterior para contar o número de ocorrências de `x` na ex
       (+ (conta-prof x (car lista))
          (conta-prof x (cdr lista))))
     ; 1o elemento é um átomo
-    ((equal x (car lista)) 
-      (+ 1 (conta-prof x (cdr lista)))) 
+    ((equal x (car lista))
+      (+ 1 (conta-prof x (cdr lista))))
     (t (conta-prof x (cdr lista)))))
 
 ; testes
@@ -157,7 +157,7 @@ Crie uma função, `(subst x y expr)`, que substitua as oorrências de `x` por `
 
 ## Exemplo: flatten
 
-Crie uma função, `(flatten lista)`, que "achata" a lista, isto é, retorna uma lista de átomos com a mesma sequência de átomos da lista profunda `lista`. 
+Crie uma função, `(flatten lista)`, que "achata" a lista, isto é, retorna uma lista de átomos com a mesma sequência de átomos da lista profunda `lista`.
 
 
 <div class="lesson">
@@ -180,11 +180,30 @@ Reimplemente a função anterior usando recursão de cauda.
 
 <div class="lesson">
 <textarea class="code">
-(defun flatten (lista)
-  ...)
+; NOT WORKING
+(defun inverte-acum (l il)
+  (cond
+    ((null l) il)
+    ((consp (car l)) (inverte-acum (cdr l) (cons (inverte (car l)) il)))
+    (t (inverte-acum (cdr l) (cons (car l) il)))))
+(defun inverte (l)
+  (inverte-acum l '()))
 
+(defun flatten-acum (l fl)
+  (cond
+    ((null l) fl)
+    ((consp (car l))
+      (cond
+          ((consp (cdr (car l))) (flatten-acum (cons (cdr (car l)) (cdr l)) (cons (car (car l)) fl)))
+          (t (flatten-acum (cons (car (car l)) (cdr l)) fl))))
+    (t (flatten-acum (cdr l) (cons (car l) fl)))))
+(defun flatten (l)
+  (flatten-acum (inverte l) '()))
+
+(print (inverte '(1 ((2 3) (4 (5)) 6) 7)))
 (print (flatten '(1 ((2 3) (4 (5)) 6) 7)))
 ; deve retornar '(1 2 3 4 5 6 7)'
+
 </textarea>
 <div class="output"></div>
 <div class="output"></div>
@@ -198,5 +217,5 @@ Escreva uma função que remove apenas a primeira ocorrência do átomo em uma e
 
 Escreva uma função que substitui todas as ocorrências do átomo old por um átomo new em uma estrutura de lista profunda.
 
-Escreva uma função que inverte todos os elementos de uma lista genérica (versão genérica de inverte / reverse) 
+Escreva uma função que inverte todos os elementos de uma lista genérica (versão genérica de inverte / reverse)
 -->
